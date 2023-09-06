@@ -6,6 +6,7 @@ from langchain.chains import RetrievalQA
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
 import openai
+import subprocess
 
 # Set OpenAI API key from Streamlit secrets
 openai.api_key = st.secrets["OPENAI_API_KEY"]
@@ -37,7 +38,9 @@ openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 ###START To use the saved embeddings on a CPU
 #Extract saved embeddings here
-jar xvf HuggingFaceEmbeddings.jar
+#!jar xvf HuggingFaceEmbeddings.jar
+cmdline = ['/bin/tar','xvf','HuggingFaceEmbeddings.jar']
+subprocess.call(cmdline)
 time.sleep(30)
 
 model_name = "BAAI/bge-large-en"
