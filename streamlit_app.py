@@ -4,7 +4,9 @@ from PIL import Image
 
 st.title("Ask questions from Autobiography of a Yogi")
 url = "https://upload.wikimedia.org/wikipedia/commons/3/3f/Paramahansa_Yogananda_Standard_Pose.jpg"
-st.image(url, caption='Sri Sri Paramhansa Yogananda')
+image = Image.open(url)
+new_image = image.resize((600, 400))
+st.image(new_image, caption='Sri Sri Paramhansa Yogananda')
 
 # Initialize chat history
 if "messages" not in st.session_state:
