@@ -9,6 +9,7 @@ from langchain.prompts import PromptTemplate
 import streamlit as st
 import openai
 import subprocess
+import time
 
 # Set OpenAI API key from Streamlit secrets
 openai.api_key = st.secrets["OPENAI_API_KEY"]
