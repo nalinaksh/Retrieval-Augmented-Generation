@@ -1,10 +1,12 @@
 import streamlit as st
 from QA_Langchain import *
 from PIL import Image
+import urllib.request
 
 st.title("Ask questions from Autobiography of a Yogi")
 url = "https://upload.wikimedia.org/wikipedia/commons/3/3f/Paramahansa_Yogananda_Standard_Pose.jpg"
-image = Image.open(url)
+urllib.request.urlretrieve(url, "Yogananda.jpg")
+image = Image.open("Yogananda.jpg")
 new_image = image.resize((600, 400))
 st.image(new_image, caption='Sri Sri Paramhansa Yogananda')
 
