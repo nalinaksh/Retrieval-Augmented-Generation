@@ -1,0 +1,10 @@
+huggingface_hub
+tensorflow[cpu]
+sentence-transformers #For HuggingFaceEmbeddings
+openai 
+chromadb
+langchain
+tiktoken
+#below ones are required when creating embeddings, not needed when using saved embeddings
+#bs4  
+#requests
