@@ -47,7 +47,7 @@ openai.api_key = st.secrets["OPENAI_API_KEY"]
 ###START To use the saved embeddings on a CPU
 #Extract saved embeddings here
 #!jar xvf HuggingFaceEmbeddings.jar
-cmdline = ['/bin/tar','xvf','HuggingFaceEmbeddings.jar']
+cmdline = ['/bin/jar','xvf','HuggingFaceEmbeddings.jar']
 subprocess.call(cmdline)
 time.sleep(30)
 
