@@ -8,7 +8,15 @@ url = "https://upload.wikimedia.org/wikipedia/commons/3/3f/Paramahansa_Yogananda
 urllib.request.urlretrieve(url, "Yogananda.jpg")
 image = Image.open("Yogananda.jpg")
 new_image = image.resize((200, 300))
-st.image(new_image, caption='Sri Sri Paramhansa Yogananda')
+
+#To center the image...
+col1, col2, col3 = st.columns(3)
+with col1:
+    st.write(' ')
+with col2:
+    st.image(new_image, caption='Sri Sri Paramhansa Yogananda')
+with col3:
+    st.write(' ')
 
 # Initialize chat history
 if "messages" not in st.session_state:
