@@ -7,8 +7,8 @@ from langchain.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
 import openai
 
-#Set OpenAI key here
-openai.api_key = OPENAI_API_KEY
+# Set OpenAI API key from Streamlit secrets
+openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 ###START To create and download embeddings, execute steps below on a GPU 
 # from langchain.document_loaders import WebBaseLoader
