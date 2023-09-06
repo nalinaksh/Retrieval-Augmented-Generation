@@ -5,6 +5,8 @@ from langchain.vectorstores import Chroma
 from langchain.chains import RetrievalQA
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
+
+import streamlit as st
 import openai
 import subprocess
 
