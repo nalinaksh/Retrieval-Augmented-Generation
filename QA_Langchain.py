@@ -11,6 +11,11 @@ import openai
 import subprocess
 import time
 
+#Add lines below to make the app work on streamlit
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 # Set OpenAI API key from Streamlit secrets
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
