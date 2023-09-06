@@ -5,6 +5,7 @@ openai
 chromadb
 langchain
 tiktoken
+streamlit
 #below ones are required when creating embeddings, not needed when using saved embeddings
 #bs4  
 #requests
