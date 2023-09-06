@@ -1,7 +1,10 @@
 import streamlit as st
 from QA_Langchain import *
+from PIL import Image
 
-st.title("Ask anything from Autobiography of a Yogi")
+st.title("Ask questions from Autobiography of a Yogi")
+url = "https://upload.wikimedia.org/wikipedia/commons/3/3f/Paramahansa_Yogananda_Standard_Pose.jpg"
+st.image(url, caption='Sri Sri Paramhansa Yogananda')
 
 # Initialize chat history
 if "messages" not in st.session_state:
