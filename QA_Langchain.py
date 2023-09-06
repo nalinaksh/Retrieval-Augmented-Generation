@@ -36,9 +36,9 @@ openai.api_key = st.secrets["OPENAI_API_KEY"]
 ###END
 
 ###START To use the saved embeddings on a CPU
-#Extract saved embeddings, it takes some time, so wait for around 5 minutes
-!jar xvf HuggingFaceEmbeddings.jar
-time.sleep(300)
+#Extract saved embeddings here
+jar xvf HuggingFaceEmbeddings.jar
+time.sleep(30)
 
 model_name = "BAAI/bge-large-en"
 model_kwargs = {'device': 'cpu'}
