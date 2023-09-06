@@ -7,7 +7,7 @@ st.title("Ask questions from Autobiography of a Yogi")
 url = "https://upload.wikimedia.org/wikipedia/commons/3/3f/Paramahansa_Yogananda_Standard_Pose.jpg"
 urllib.request.urlretrieve(url, "Yogananda.jpg")
 image = Image.open("Yogananda.jpg")
-new_image = image.resize((600, 400))
+new_image = image.resize((400, 600))
 st.image(new_image, caption='Sri Sri Paramhansa Yogananda')
 
 # Initialize chat history
