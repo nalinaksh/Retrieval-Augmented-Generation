@@ -7,11 +7,8 @@ from langchain.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
 import openai
 
-openai.api_key = "xxxx"
-
-# Set env var OPENAI_API_KEY or load from a .env file
-# import dotenv
-# dotenv.load_env()
+#Set OpenAI key here
+openai.api_key = OPENAI_API_KEY
 
 ###START To create and download embeddings, execute steps below on a GPU 
 # from langchain.document_loaders import WebBaseLoader
