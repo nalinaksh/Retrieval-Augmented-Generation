@@ -40,14 +40,17 @@ openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 #vectorstore = Chroma.from_documents(documents=all_splits, embedding=embedding, persist_directory=persist_dir)
 #vectorstore.persist()
+#use either jar or tar cmd to create archive files for embeddings
 #!jar cvf HuggingFaceEmbeddings.jar HuggingFaceEmbeddings
+#!tar cvzf HuggingFaceEmbeddings.tar.gz HuggingFaceEmbeddings
 #Download above jar file on your local machine
 ###END
 
 ###START To use the saved embeddings on a CPU
 #Extract saved embeddings here
 #!jar xvf HuggingFaceEmbeddings.jar
-cmdline = ['/bin/jar','xvf','HuggingFaceEmbeddings.jar']
+#!tar xvzf HuggingFaceEmbeddings.tar.gz
+cmdline = ['/bin/tar','xvzf','HuggingFaceEmbeddings.tar.gz']
 subprocess.call(cmdline)
 time.sleep(30)
 
