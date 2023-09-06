@@ -1,10 +1,7 @@
 !pip install -q gradio
 import gradio as gr
 import time
-
-#Extract saved embeddings, it takes some time, so wait for around 5 minutes
-!jar xvf HuggingFaceEmbeddings.jar
-time.sleep(300)
+from QA_Langchain import *
 
 def slow_echo(question, history):
   message = ask(question)
