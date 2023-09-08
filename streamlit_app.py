@@ -1,5 +1,5 @@
 import streamlit as st
-from QA_Langchain import *
+from QA_Langchain_Memory import *
 from PIL import Image
 import urllib.request
 
