@@ -89,5 +89,5 @@ qna_chain = ConversationalRetrievalChain.from_llm(llm,
                                                   condense_question_prompt=CONDENSE_QUESTION_PROMPT)
 
 def ask(query):
-  result = qa_chain({"question": query})
+  result = qna_chain({"question": query})
   return result["answer"]
