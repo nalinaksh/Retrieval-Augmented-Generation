@@ -6,8 +6,11 @@ from langchain.chains import RetrievalQA
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
 
-from langchain.memory import ConversationBufferMemory
+from langchain.memory import ConversationBufferWindowMemory
 from langchain.chains import ConversationalRetrievalChain
+from langchain.chains import LLMChain
+from langchain.chains.question_answering import load_qa_chain
+from langchain.chains.conversational_retrieval.prompts import CONDENSE_QUESTION_PROMPT
 
 import streamlit as st
 import openai
@@ -70,24 +73,32 @@ vectorstore = None
 vectorstore = Chroma(embedding_function=embedding, persist_directory=persist_dir)
 ###END
 
-question = ""
-
 llm = ChatOpenAI(openai_api_key=openai.api_key, model_name="gpt-3.5-turbo", temperature=0)
 
-_template = """Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question, in its original language.
+question_generator = LLMChain(llm=llm, prompt=CONDENSE_QUESTION_PROMPT)
 
-Chat History:
-{chat_history}
-Follow Up Input: {question}
-Standalone question:"""
+prompt_template = """Use the following pieces of context to answer the question at the end. \
+If you don't know the answer, just say that you don't know, don't try to make up an answer. \
+Use three sentences maximum and keep the answer as concise as possible.
 
-CONDENSE_QUESTION_PROMPT = PromptTemplate.from_template(_template)
-memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
-qna_chain = ConversationalRetrievalChain.from_llm(llm,
-                                                  vectorstore.as_retriever(),
-                                                  memory=memory,
-                                                  condense_question_prompt=CONDENSE_QUESTION_PROMPT)
+{context}
+
+Question: {question}
+Helpful Answer:"""
+
+QA_PROMPT = PromptTemplate.from_template(prompt_template)
+doc_chain = load_qa_chain(llm, chain_type="stuff", prompt=QA_PROMPT)
+
+memory = ConversationBufferWindowMemory(k=3, memory_key="chat_history", return_messages=True)
+
+chain = ConversationalRetrievalChain(
+    retriever=vectorstore.as_retriever(),
+    question_generator=question_generator,
+    combine_docs_chain=doc_chain,
+    memory=memory,
+    verbose=True
+)
 
 def ask(query):
-  result = qna_chain({"question": query})
+  result = chain({"question": query})
   return result["answer"]
