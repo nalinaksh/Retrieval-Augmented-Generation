@@ -16,6 +16,10 @@ import streamlit as st
 import openai
 import subprocess
 import time
+import langchain
+
+#Set to True for debugging
+langchain.verbose = False
 
 #Add lines below to make the app work on streamlit
 __import__('pysqlite3')
@@ -96,7 +100,7 @@ chain = ConversationalRetrievalChain(
     question_generator=question_generator,
     combine_docs_chain=doc_chain,
     memory=memory,
-    verbose=True
+    verbose=False # Set to True for debugging
 )
 
 def ask(query):
