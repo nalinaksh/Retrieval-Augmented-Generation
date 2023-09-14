@@ -34,9 +34,11 @@ if prompt := st.chat_input("Who was Paramhansa Yogananda?"):
     # Add user message to chat history
     st.session_state.messages.append({"role": "user", "content": prompt})
 
-    response = ask(prompt)
+    # response = ask(prompt)
     # Display assistant response in chat message container
     with st.chat_message("assistant"):
+        result = chain({"question": prompt})
+        response = result["answer"]
         st.markdown(response)
     # Add assistant response to chat history
     st.session_state.messages.append({"role": "assistant", "content": response})
