@@ -80,9 +80,7 @@ vectorstore = Chroma(embedding_function=embedding, persist_directory=persist_dir
 
 llm = ChatOpenAI(openai_api_key=openai.api_key, 
                  model_name="gpt-3.5-turbo", 
-                 temperature=0, 
-                 streaming=True, 
-                 callbacks=[StreamingStdOutCallbackHandler()])
+                 temperature=0)
 
 question_generator = LLMChain(llm=llm, prompt=CONDENSE_QUESTION_PROMPT)
 
@@ -105,6 +103,8 @@ chain = ConversationalRetrievalChain(
     question_generator=question_generator,
     combine_docs_chain=doc_chain,
     memory=memory,
+    streaming=True, 
+    callbacks=[StreamingStdOutCallbackHandler()],
     verbose=False # Set to True for debugging
 )
 
