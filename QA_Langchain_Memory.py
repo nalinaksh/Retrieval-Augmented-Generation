@@ -11,6 +11,7 @@ from langchain.chains import ConversationalRetrievalChain
 from langchain.chains import LLMChain
 from langchain.chains.question_answering import load_qa_chain
 from langchain.chains.conversational_retrieval.prompts import CONDENSE_QUESTION_PROMPT
+from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 
 import streamlit as st
 import openai
@@ -77,7 +78,11 @@ vectorstore = None
 vectorstore = Chroma(embedding_function=embedding, persist_directory=persist_dir)
 ###END
 
-llm = ChatOpenAI(openai_api_key=openai.api_key, model_name="gpt-3.5-turbo", temperature=0)
+llm = ChatOpenAI(openai_api_key=openai.api_key, 
+                 model_name="gpt-3.5-turbo", 
+                 temperature=0, 
+                 streaming=True, 
+                 callbacks=[StreamingStdOutCallbackHandler()])
 
 question_generator = LLMChain(llm=llm, prompt=CONDENSE_QUESTION_PROMPT)
 
