@@ -1,38 +1,52 @@
 import streamlit as st
-import streamlit_authenticator as stauth
 from QA_Langchain_Memory import *
 from PIL import Image
 import urllib.request
 
-#Import the YAML file into your script
-import yaml
-from yaml.loader import SafeLoader
-with open('config.yaml') as file:
-    config = yaml.load(file, Loader=SafeLoader)
+# streamlit_app.py
 
-#Create the authenticator object:
-authenticator = Authenticate(
-    config['credentials'],
-    config['cookie']['name'],
-    config['cookie']['key'],
-    config['cookie']['expiry_days'],
-    config['preauthorized']
-)
+#User authentication
+import hmac
 
-#Render the login widget by providing a name for the form and its location (i.e., sidebar or main):
-name, authentication_status, username = authenticator.login('Login', 'main')
+def check_password():
+    """Returns `True` if the user had a correct password."""
 
-#Authenticate users
-if st.session_state["authentication_status"]:
-    authenticator.logout('Logout', 'main')
-    st.write(f'Welcome *{st.session_state["name"]}*')
-    st.title('Some content')
-elif st.session_state["authentication_status"] == False:
-    st.error('Username/password is incorrect')
-elif st.session_state["authentication_status"] == None:
-    st.warning('Please enter your username and password')
+    def login_form():
+        """Form with widgets to collect user information"""
+        with st.form("Credentials"):
+            st.text_input("Username", key="username")
+            st.text_input("Password", type="password", key="password")
+            st.form_submit_button("Log in", on_click=password_entered)
+
+    def password_entered():
+        """Checks whether a password entered by the user is correct."""
+        if st.session_state["username"] in st.secrets[
+            "passwords"
+        ] and hmac.compare_digest(
+            st.session_state["password"],
+            st.secrets.passwords[st.session_state["username"]],
+        ):
+            st.session_state["password_correct"] = True
+            del st.session_state["password"]  # Don't store the username or password.
+            del st.session_state["username"]
+        else:
+            st.session_state["password_correct"] = False
+
+    # Return True if the username + password is validated.
+    if st.session_state.get("password_correct", False):
+        return True
+
+    # Show inputs for username + password.
+    login_form()
+    if "password_correct" in st.session_state:
+        st.error("😕 User not known or password incorrect")
+    return False
 
 
+if not check_password():
+    st.stop()
+
+# Main Streamlit app starts here
 st.title("Ask questions from Autobiography of a Yogi")
 url = "https://upload.wikimedia.org/wikipedia/commons/3/3f/Paramahansa_Yogananda_Standard_Pose.jpg"
 urllib.request.urlretrieve(url, "Yogananda.jpg")
