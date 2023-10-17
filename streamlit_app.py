@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit_authenticator as stauth
 from QA_Langchain_Memory import *
 from PIL import Image
 import urllib.request
