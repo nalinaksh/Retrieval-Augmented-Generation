@@ -12,4 +12,5 @@ tiktoken
 
 #add lines below for streamlit 
 streamlit
+streamlit-authenticator
 pysqlite3-binary
