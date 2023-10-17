@@ -4,6 +4,35 @@ from QA_Langchain_Memory import *
 from PIL import Image
 import urllib.request
 
+#Import the YAML file into your script
+import yaml
+from yaml.loader import SafeLoader
+with open('config.yaml') as file:
+    config = yaml.load(file, Loader=SafeLoader)
+
+#Create the authenticator object:
+authenticator = Authenticate(
+    config['credentials'],
+    config['cookie']['name'],
+    config['cookie']['key'],
+    config['cookie']['expiry_days'],
+    config['preauthorized']
+)
+
+#Render the login widget by providing a name for the form and its location (i.e., sidebar or main):
+name, authentication_status, username = authenticator.login('Login', 'main')
+
+#Authenticate users
+if st.session_state["authentication_status"]:
+    authenticator.logout('Logout', 'main')
+    st.write(f'Welcome *{st.session_state["name"]}*')
+    st.title('Some content')
+elif st.session_state["authentication_status"] == False:
+    st.error('Username/password is incorrect')
+elif st.session_state["authentication_status"] == None:
+    st.warning('Please enter your username and password')
+
+
 st.title("Ask questions from Autobiography of a Yogi")
 url = "https://upload.wikimedia.org/wikipedia/commons/3/3f/Paramahansa_Yogananda_Standard_Pose.jpg"
 urllib.request.urlretrieve(url, "Yogananda.jpg")
