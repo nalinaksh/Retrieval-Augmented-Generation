@@ -1,0 +1,13 @@
+cookie:
+  expiry_days: 30
+  key: some_signature_key
+  name: some_cookie_name
+credentials:
+  usernames:
+    dbaldwin:
+      email: nalinaksh@gmail.com
+      name: MyGuruDeva
+      password: $2b$12$NJpgfIl4T9o93hpl4ox4ZuDamTkqUHsaV6Tk3V4msBkpCCXWULi0.
+preauthorized:
+  emails:
+  - nalinaksh@gmail.com
