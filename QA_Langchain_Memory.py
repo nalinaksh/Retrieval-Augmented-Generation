@@ -1,6 +1,6 @@
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 #from langchain.embeddings import OpenAIEmbeddings
-from langchain.embeddings import HuggingFaceEmbeddings
+from langchain.embeddings import HuggingFaceBgeEmbeddings
 from langchain.vectorstores import Chroma
 from langchain.chains import RetrievalQA
 from langchain.chat_models import ChatOpenAI
@@ -41,10 +41,10 @@ openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 #persist_dir = "HuggingFaceEmbeddings"
 
-# model_name = "BAAI/bge-large-en"
+# model_name = "BAAI/bge-large-en-v1.5"
 # model_kwargs = {'device': 'cuda'}
-# encode_kwargs = {'normalize_embeddings': False}
-# embedding = HuggingFaceEmbeddings(
+# encode_kwargs = {'normalize_embeddings': True} # set True to compute cosine similarity
+# embedding = HuggingFaceBgeEmbeddings(
 #     model_name=model_name,
 #     model_kwargs=model_kwargs,
 #     encode_kwargs=encode_kwargs)
@@ -65,10 +65,10 @@ cmdline = ['/bin/tar','xvzf','HuggingFaceEmbeddings.tar.gz']
 subprocess.call(cmdline)
 time.sleep(30)
 
-model_name = "BAAI/bge-large-en"
+model_name = "BAAI/bge-large-en-v1.5"
 model_kwargs = {'device': 'cpu'}
-encode_kwargs = {'normalize_embeddings': False}
-embedding = HuggingFaceEmbeddings(
+encode_kwargs = {'normalize_embeddings': True} # set True to compute cosine similarity
+embedding = HuggingFaceBgeEmbeddings(
     model_name=model_name,
     model_kwargs=model_kwargs,
     encode_kwargs=encode_kwargs)
