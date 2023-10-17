@@ -1,7 +1,7 @@
 !pip install -q gradio
 import gradio as gr
 import time
-from QA_Langchain import *
+from QA_Langchain_Memory import *
 
 def slow_echo(question, history):
   message = ask(question)
@@ -16,4 +16,4 @@ description="""
 
 demo = gr.ChatInterface(slow_echo, title=title, description=description).queue()
 if __name__ == "__main__":
-    demo.launch()
+  demo.launch(auth=("Paramhansa", "Yogananda"))
