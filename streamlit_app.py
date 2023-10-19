@@ -86,8 +86,9 @@ if prompt := st.chat_input("Ask any spiritual question"):
     # response = ask(prompt)
     # Display assistant response in chat message container
     with st.chat_message("assistant"):
-        result = chain({"question": prompt})
-        response = result["answer"]
-        st.markdown(response)
+        with st.spinner("Thinking..."):
+            result = chain({"question": prompt})
+            response = result["answer"]
+            st.markdown(response)
     # Add assistant response to chat history
     st.session_state.messages.append({"role": "assistant", "content": response})
