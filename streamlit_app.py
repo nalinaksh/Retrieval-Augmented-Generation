@@ -71,8 +71,13 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
+# Clear chat messages
+def clear_chat_history():
+    st.session_state.messages = [{"role": "assistant", "content": "Ask any spiritual question"}]
+st.sidebar.button('Clear Chat History', on_click=clear_chat_history)
+
 # React to user input
-if prompt := st.chat_input("Ask any spiritual question..."):
+if prompt := st.chat_input("Ask any spiritual question"):
     # Display user message in chat message container
     st.chat_message("user").markdown(prompt)
     # Add user message to chat history
