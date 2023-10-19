@@ -73,7 +73,7 @@ for message in st.session_state.messages:
 
 # Clear chat messages
 def clear_chat_history():
-    st.session_state.messages = [{"role": "assistant", "content": "Ask any spiritual question"}]
+    st.session_state.messages = []
 st.sidebar.button('Clear Chat History', on_click=clear_chat_history)
 
 # React to user input
