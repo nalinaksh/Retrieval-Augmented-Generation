@@ -47,6 +47,8 @@ if not check_password():
     st.stop()
 
 # Main Streamlit app starts here
+# st.title("Ask from AOY")
+st.markdown("<h1 style='text-align: center; color: grey;'>Ask from AOY</h1>", unsafe_allow_html=True)
 url = "https://upload.wikimedia.org/wikipedia/commons/3/3f/Paramahansa_Yogananda_Standard_Pose.jpg"
 urllib.request.urlretrieve(url, "Yogananda.jpg")
 image = Image.open("Yogananda.jpg")
@@ -57,7 +59,6 @@ col1, col2, col3 = st.columns(3)
 with col1:
     st.write(' ')
 with col2:
-    st.title("Ask from AOY")
     st.image(new_image, caption='Sri Sri Paramhansa Yogananda')
 with col3:
     st.write(' ')
@@ -74,6 +75,7 @@ for message in st.session_state.messages:
 # Clear chat messages
 def clear_chat_history():
     st.session_state.messages = []
+st.sidebar.button('Clear Chat History', on_click=clear_chat_history)
 
 # React to user input
 if prompt := st.chat_input("Ask any spiritual question"):
@@ -91,4 +93,3 @@ if prompt := st.chat_input("Ask any spiritual question"):
             st.markdown(response)
     # Add assistant response to chat history
     st.session_state.messages.append({"role": "assistant", "content": response})
-    st.button('Clear Chat History', on_click=clear_chat_history)
