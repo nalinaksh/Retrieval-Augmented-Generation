@@ -1,7 +1,7 @@
 huggingface_hub
 tensorflow[cpu]
 sentence-transformers #For HuggingFaceEmbeddings
-openai 
+--upgrade openai 
 chromadb
 langchain
 tiktoken
