@@ -1,9 +1,3 @@
-import subprocess
-
-#get latest version of packages
-cmdline = ['pur', '-r', 'requirements.txt']
-subprocess.call(cmdline)
-
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 #from langchain.embeddings import OpenAIEmbeddings
 from langchain.embeddings import HuggingFaceBgeEmbeddings
@@ -23,6 +17,7 @@ import streamlit as st
 import openai
 import time
 import langchain
+import subprocess
 
 #Set to True for debugging
 langchain.verbose = False
