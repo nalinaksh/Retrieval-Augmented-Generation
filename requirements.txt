@@ -1,7 +1,7 @@
 huggingface_hub
 tensorflow[cpu]
 sentence-transformers #For HuggingFaceEmbeddings
---upgrade openai 
+openai 
 chromadb
 langchain
 tiktoken
@@ -14,3 +14,6 @@ tiktoken
 streamlit
 streamlit-authenticator
 pysqlite3-binary
+
+#pur bring all the dependencies listed in requirements.txt to their latest version
+pur
