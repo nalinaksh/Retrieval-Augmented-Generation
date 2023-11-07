@@ -1,9 +1,9 @@
 huggingface_hub
 tensorflow[cpu]
 sentence-transformers #For HuggingFaceEmbeddings
-openai 
+openai==0.28.1
 chromadb
-langchain
+langchain=0.0.330
 tiktoken
 
 #below ones are required when creating embeddings, not needed when using saved embeddings
