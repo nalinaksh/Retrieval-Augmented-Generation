@@ -14,6 +14,3 @@ tiktoken
 streamlit
 streamlit-authenticator
 pysqlite3-binary
-
-#pur bring all the dependencies listed in requirements.txt to their latest version
-pur
