@@ -1,7 +1,7 @@
 import subprocess
 
 #get latest version of packages
-cmdline = ['pur -r requirements.txt']
+cmdline = ['pur' '-r' 'requirements.txt']
 subprocess.call(cmdline)
 
 from langchain.text_splitter import RecursiveCharacterTextSplitter
