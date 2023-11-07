@@ -1,3 +1,7 @@
+#get latest version of packages
+cmdline = ['pur -r requirements.txt']
+subprocess.call(cmdline)
+
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 #from langchain.embeddings import OpenAIEmbeddings
 from langchain.embeddings import HuggingFaceBgeEmbeddings
@@ -63,7 +67,7 @@ openai.api_key = st.secrets["OPENAI_API_KEY"]
 #!tar xvzf HuggingFaceEmbeddings.tar.gz
 cmdline = ['/bin/tar','xvzf','HuggingFaceEmbeddings.tar.gz']
 subprocess.call(cmdline)
-time.sleep(30)
+time.sleep(2)
 
 model_name = "BAAI/bge-large-en-v1.5"
 model_kwargs = {'device': 'cpu'}
