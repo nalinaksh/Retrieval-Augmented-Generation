@@ -1,3 +1,5 @@
+import subprocess
+
 #get latest version of packages
 cmdline = ['pur -r requirements.txt']
 subprocess.call(cmdline)
@@ -19,7 +21,6 @@ from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 
 import streamlit as st
 import openai
-import subprocess
 import time
 import langchain
 
