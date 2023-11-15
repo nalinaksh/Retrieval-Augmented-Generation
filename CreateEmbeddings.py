@@ -1,5 +1,7 @@
 ###START To create and download embeddings, execute steps below on a GPU 
 from langchain.document_loaders import WebBaseLoader
+from langchain.embeddings import HuggingFaceBgeEmbeddings
+from langchain.vectorstores import Chroma
 
 def get_data_splits(url):
   loader = WebBaseLoader(url)
@@ -13,10 +15,7 @@ def get_embedding_fn():
   model_kwargs = {'device': 'cuda'}
   encode_kwargs = {'normalize_embeddings': True} # set True to compute cosine similarity
   embedding = HuggingFaceBgeEmbeddings(model_name=model_name, model_kwargs=model_kwargs, encode_kwargs=encode_kwargs)
-  return embeddings
-
-url = "https://www.globalgreyebooks.com/online-ebooks/paramhansa-yogananda_autobiography-of-a-yogi_complete-text.html"
-persist_dir = "HuggingFaceEmbeddings"
+  return embedding
 
 def create_embedding_vectorstore(url, persist_dir):
   all_splits = get_data_splits(url)
