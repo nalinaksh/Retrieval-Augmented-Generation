@@ -1,4 +1,3 @@
-###START To create and download embeddings, execute steps below on a GPU 
 from langchain.document_loaders import WebBaseLoader
 from langchain.embeddings import HuggingFaceBgeEmbeddings
 from langchain.vectorstores import Chroma
@@ -23,7 +22,3 @@ def create_embedding_vectorstore(url, persist_dir):
   vectorstore = Chroma.from_documents(documents=all_splits, embedding=embedding, persist_directory=persist_dir)
   vectorstore.persist()
   
-# use tar cmd to create archive files for embeddings
-!tar cvzf HuggingFaceEmbeddings.tar.gz HuggingFaceEmbeddings
-#Download above jar file on your local machine
-###END
