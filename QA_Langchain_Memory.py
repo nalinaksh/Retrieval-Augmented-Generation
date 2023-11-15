@@ -33,7 +33,7 @@ openai.api_key = st.secrets["OPENAI_API_KEY"]
 ###START To create and download embeddings, execute steps below on a GPU 
 #url = "https://www.globalgreyebooks.com/online-ebooks/paramhansa-yogananda_autobiography-of-a-yogi_complete-text.html"
 #persist_dir = "HuggingFaceEmbeddings"
-#create_embeddings_vectorstore(url, persist_dir)
+#create_embedding_vectorstore(url, persist_dir)
 #use tar cmd to create archive files for embeddings
 #!tar cvzf HuggingFaceEmbeddings.tar.gz HuggingFaceEmbeddings
 #Download above jar file on your local machine
@@ -41,8 +41,6 @@ openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 ###START To use the saved embeddings on a CPU
 #Extract saved embeddings here
-#!jar xvf HuggingFaceEmbeddings.jar
-#!tar xvzf HuggingFaceEmbeddings.tar.gz
 cmdline = ['/bin/tar','xvzf','HuggingFaceEmbeddings.tar.gz']
 subprocess.call(cmdline)
 time.sleep(2)
