@@ -13,6 +13,7 @@ from langchain.chains.question_answering import load_qa_chain
 from langchain.chains.conversational_retrieval.prompts import CONDENSE_QUESTION_PROMPT
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 
+from CreateHFEmbedding import *
 import streamlit as st
 import openai
 import time
