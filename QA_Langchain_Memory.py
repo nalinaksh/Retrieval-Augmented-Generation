@@ -59,7 +59,7 @@ vectorstore = None
 vectorstore = Chroma(embedding_function=embedding, persist_directory=persist_dir)
 ###END
 
-llm = ChatOpenAI(openai_api_key=openai.api_key, 
+llm = ChatOpenAI(openai_api_key=st.secrets["OPENAI_API_KEY"], 
                  model_name="gpt-3.5-turbo", 
                  temperature=0,
                  max_tokens=256,
