@@ -95,3 +95,6 @@ chain = ConversationalRetrievalChain(
 def ask(query):
   result = chain({"question": query})
   return result["answer"]
+
+def get_vecstore():
+    return vectorstore
