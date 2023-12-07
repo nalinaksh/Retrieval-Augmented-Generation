@@ -5,7 +5,7 @@ from langchain.vectorstores import Chroma
 def get_data_splits(url):
   loader = WebBaseLoader(url)
   data = loader.load()
-  text_splitter = RecursiveCharacterTextSplitter(chunk_size = 500, chunk_overlap = 50)
+  text_splitter = RecursiveCharacterTextSplitter(chunk_size = 500, chunk_overlap = 100)
   all_splits = text_splitter.split_documents(data)
   return all_splits
 
