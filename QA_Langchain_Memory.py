@@ -62,6 +62,7 @@ vectorstore = Chroma(embedding_function=embedding, persist_directory=persist_dir
 llm = ChatOpenAI(openai_api_key=openai.api_key, 
                  model_name="gpt-3.5-turbo", 
                  temperature=0,
+                 max_tokens=256,
                  streaming=True, 
                  callbacks=[StreamingStdOutCallbackHandler()]
 )
@@ -71,8 +72,13 @@ question_generator = LLMChain(llm=llm, prompt=CONDENSE_QUESTION_PROMPT)
 prompt_template = """Use the following pieces of context to answer the question at the end. \
 If you could not find the answer from the given context, just say that you don't know the answer. \
 Don't consult any other external source to look up or make up the answer. \
-Use three sentences maximum and keep the answer as concise as possible. End all of your responses with \
+Provide evidence to support the answer you generate and also return a confidence score (low, medium or high) for your response. \
+Keep the answer as concise as possible. End all of your responses with \
 "Jai Guru 🙏"
+Your response should look like this:
+Response:
+Supporting Evidence:
+Confidence:
 
 {context}
 
