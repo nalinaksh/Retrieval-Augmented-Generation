@@ -73,12 +73,11 @@ prompt_template = """Use the following pieces of context to answer the question 
 If you could not find the answer from the given context, just say that you don't know the answer. \
 Don't consult any other external source to look up or make up the answer. \
 Provide evidence to support the answer you generate and also return a confidence score (low, medium or high) for your response. \
-Keep the answer as concise as possible. End all of your responses with \
-"Jai Guru 🙏"
-Your response should look like this:
-Response:
-Supporting Evidence:
-Confidence:
+Keep the answer as concise as possible. End all of your responses with "Jai Guru 🙏" \
+Your response should look like this: \
+Response: \
+Supporting Evidence: \
+Confidence: \
 
 {context}
 
