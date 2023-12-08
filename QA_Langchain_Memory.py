@@ -19,6 +19,7 @@ import openai
 import time
 import langchain
 import subprocess
+import os
 
 #Set to True for debugging
 langchain.verbose = False
@@ -29,7 +30,8 @@ import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 # Set OpenAI API key from Streamlit secrets
-openai.api_key = st.secrets["OPENAI_API_KEY"]
+if "OPENAI_API_KEY" not in os.environ:
+    os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 
 ###START To create and download embeddings, execute steps below on a GPU 
 #url = "https://www.globalgreyebooks.com/online-ebooks/paramhansa-yogananda_autobiography-of-a-yogi_complete-text.html"
@@ -59,7 +61,7 @@ vectorstore = None
 vectorstore = Chroma(embedding_function=embedding, persist_directory=persist_dir)
 ###END
 
-llm = ChatOpenAI(openai_api_key=st.secrets["OPENAI_API_KEY"], 
+llm = ChatOpenAI(openai_api_key=os.environ["OPENAI_API_KEY"], 
                  model_name="gpt-3.5-turbo", 
                  temperature=0,
                  max_tokens=200,
