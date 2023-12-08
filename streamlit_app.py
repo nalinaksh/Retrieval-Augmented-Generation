@@ -39,6 +39,8 @@ def clear_chat_history():
     st.session_state.messages = []
 st.sidebar.button('Clear Chat History', on_click=clear_chat_history)
 
+vectorstore = get_vecstore()
+
 # React to user input
 if prompt := st.chat_input("Ask any spiritual question"):
     # Display user message in chat message container
@@ -52,6 +54,10 @@ if prompt := st.chat_input("Ask any spiritual question"):
         with st.spinner("Thinking..."):
             result = chain({"question": prompt})
             answer = result["answer"]
+            answer += "\n\nContext: "
+            docs = vectorstore.similarity_search(prompt)
+            for doc in docs:
+                answer += "\n" + doc.page_content
             st.markdown(answer)
     # Add assistant response to chat history
     st.session_state.messages.append({"role": "assistant", "content": answer})
