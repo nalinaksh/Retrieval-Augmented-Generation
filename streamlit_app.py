@@ -53,7 +53,7 @@ if prompt := st.chat_input("Ask any spiritual question"):
         with st.spinner("Thinking..."):
             result = chain({"question": prompt})
             response = result["answer"]
-            output = json_loads(response)["res"]
+            output = json.loads(response)["res"]
             st.markdown(output)
     # Add assistant response to chat history
     st.session_state.messages.append({"role": "assistant", "content": ans})
