@@ -75,7 +75,7 @@ Don't consult any other external source to look up or make up the answer. \
 Provide context to support the answer you generate and also return a confidence score (low, medium or high) for your response. \
 Keep the answer as concise as possible. End all of your responses with "Jai Guru 🙏"
 
-The response, supporting context and confidence should be outputed in separate lines.
+Format the output in JSON with following keys: result, context and confidence.
 
 {context}
 
