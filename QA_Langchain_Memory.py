@@ -93,8 +93,12 @@ chain = ConversationalRetrievalChain(
     memory=memory,
     verbose=False # Set to True for debugging
 )
+    
+def ask(query):
+  result = chain({"question": query})
+  return result["answer"]
 
-#Something like this can be used directly retrieve docs from the vectorstore for a given query. 
+#Something like this can be used to directly retrieve docs from the vectorstore for a given query. 
 # Not required as of now 
 def get_relevant_docs(query):
     m = memory.load_memory_variables({})
@@ -105,11 +109,3 @@ def get_relevant_docs(query):
     for doc in docs:
         context += "\n" + doc.page_content
     return context
-    
-def ask(query):
-  result = chain({"question": query})
-  return result["answer"]
-            
-
-def get_vecstore():
-    return vectorstore
