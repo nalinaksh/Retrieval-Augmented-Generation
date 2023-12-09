@@ -94,9 +94,22 @@ chain = ConversationalRetrievalChain(
     verbose=False # Set to True for debugging
 )
 
+#Something like this can be used directly retrieve docs from the vectorstore for a given query. 
+# Not required as of now 
+def get_relevant_docs(query):
+    m = memory.load_memory_variables({})
+    chat_history = m['chat_history']
+    standalone_question = question_generator({"question":query, "chat_history":chat_history})
+    context = "\n\nContext: "
+    docs = vectorstore.similarity_search(standalone_question)
+    for doc in docs:
+        context += "\n" + doc.page_content
+    return context
+    
 def ask(query):
   result = chain({"question": query})
   return result["answer"]
+            
 
 def get_vecstore():
     return vectorstore
