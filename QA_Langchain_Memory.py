@@ -72,9 +72,10 @@ llm = ChatOpenAI(openai_api_key=os.environ["OPENAI_API_KEY"],
 question_generator = LLMChain(llm=llm, prompt=CONDENSE_QUESTION_PROMPT)
 
 prompt_template = """Use the following pieces of context to answer the question at the end. \
+The context is from the book - "Autobiography of a Yogi", written by Paramhansa Yogananda. \
 If you could not find the answer from the given context, just say that you don't know the answer. \
+Directly quote the answer from the context, do not generate answer in your own words. \
 Don't consult any other external source to look up or make up the answer. \
-Keep the answer as concise as possible. End all of your responses with "Jai Guru 🙏"
 
 {context}
 
