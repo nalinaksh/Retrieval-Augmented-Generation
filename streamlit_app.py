@@ -10,7 +10,7 @@ if not check_password():
 
 # Main Streamlit app starts here
 # st.title("Ask from AOY")
-st.markdown("<h1 style='text-align: center; color: grey;'>Get answers from "Autobiography of a Yogi"</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: grey;'>Get answers from /"Autobiography of a Yogi/"</h1>", unsafe_allow_html=True)
 url = "https://upload.wikimedia.org/wikipedia/commons/3/3f/Paramahansa_Yogananda_Standard_Pose.jpg"
 urllib.request.urlretrieve(url, "Yogananda.jpg")
 image = Image.open("Yogananda.jpg")
