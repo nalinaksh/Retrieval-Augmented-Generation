@@ -52,7 +52,7 @@ model_name = "BAAI/bge-large-en-v1.5"
 model_kwargs = {'device': 'cpu'}
 encode_kwargs = {'normalize_embeddings': True} # set True to compute cosine similarity
 
-@st.cache
+@st.cache_resource
 def get_embedding():
     embedding = HuggingFaceBgeEmbeddings(
     model_name=model_name,
@@ -62,13 +62,13 @@ def get_embedding():
 
 persist_dir = "HuggingFaceEmbeddings"
 
-@st.cache
+@st.cache_resource
 def get_vectorstore():
     vectorstore = Chroma(embedding_function=get_embedding(), persist_directory=persist_dir)
     return vectorstore
 ###END
 
-@st.cache
+@st.cache_resource
 def get_chat_openai():
     llm = ChatOpenAI(openai_api_key=os.environ["OPENAI_API_KEY"],
                      model_name="gpt-3.5-turbo", 
@@ -79,7 +79,7 @@ def get_chat_openai():
     )
     return llm
 
-@st.cache
+@st.cache_resource
 def get_question_generator():
     question_generator = LLMChain(llm=get_chat_openai(), prompt=CONDENSE_QUESTION_PROMPT)
     return question_generator
@@ -97,19 +97,19 @@ Helpful Answer:"""
 
 QA_PROMPT = PromptTemplate.from_template(prompt_template)
 
-@st.cache
+@st.cache_resource
 def get_doc_chain():
     doc_chain = load_qa_chain(get_chat_openai(), chain_type="stuff", prompt=QA_PROMPT)
     return doc_chain
     
-@st.cache
+@st.cache_resource
 def get_memory():
     memory = ConversationBufferWindowMemory(k=3, memory_key="chat_history", return_messages=True)
     return memory
     
 vectorstore = get_vectorstore()
 
-@st.cache
+@st.cache_resource
 def get_chain():
     chain = ConversationalRetrievalChain(
         retriever=vectorstore.as_retriever(),
