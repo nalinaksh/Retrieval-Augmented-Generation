@@ -71,9 +71,8 @@ llm = ChatOpenAI(openai_api_key=os.environ["OPENAI_API_KEY"],
 
 question_generator = LLMChain(llm=llm, prompt=CONDENSE_QUESTION_PROMPT)
 
-prompt_template = """Use the following pieces of context to answer the question at the end. \
-The context is from the book - "Autobiography of a Yogi", written by Paramhansa Yogananda. \
-Directly use the sentences/paragraphs from the given context as it is to answer the question. Do not paraphrase, I repeat, do not paraphrase. \
+prompt_template = """Use the following pieces of context to concisely answer the question at the end. \
+The context is from the book - "Autobiography of a Yogi", written by Paramahansa Yogananda. \
 If you could not find the answer in the given context, just say that you don't know the answer. \
 Don't consult any other external source to look up or make up the answer. \
 
