@@ -71,11 +71,12 @@ llm = ChatOpenAI(openai_api_key=os.environ["OPENAI_API_KEY"],
 
 question_generator = LLMChain(llm=llm, prompt=CONDENSE_QUESTION_PROMPT)
 
-prompt_template = """Use the following pieces of context to concisely answer the question at the end. \
+prompt_template = """You are a helpful assistant. Use the context below to concisely answer the question at the end. \
 The context is from the book - "Autobiography of a Yogi", written by Paramahansa Yogananda. \
-If you could not find the answer in the given context, just say that you don't know the answer. \
-Don't consult any other external source to look up or make up the answer. \
+If you do not find the answer in the given context, just say that you don't know the answer. \
+Do not try to make up the answer. Do not use any external source such as internet to look up for the answer. 
 
+Context:
 {context}
 
 Question: {question}
