@@ -1,2 +1,2 @@
 # Retrieval Augmented Generation
-To ask questions on documents with the help of OpenAI chat API and HuggingFace Embeddings, vectorstore and Langchain
+Created a RAG based chat application with memory (for follow up questions) for a custom document using OpenAI chat completion API, HuggingFace Embeddings, ChromaDB vectorstore and Langchain. 
