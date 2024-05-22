@@ -4,6 +4,7 @@ sentence-transformers #For HuggingFaceEmbeddings
 #openai==0.28.1
 chromadb==0.4.16
 #langchain==0.0.332
+langchain-community
 langchain[openai]
 tiktoken
 
