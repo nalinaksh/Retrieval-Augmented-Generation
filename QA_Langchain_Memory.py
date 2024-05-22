@@ -30,8 +30,8 @@ import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 # Set OpenAI API key from Streamlit secrets
-if "OPENAI_API_KEY" not in os.environ:
-    os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+# if "OPENAI_API_KEY" not in os.environ:
+#     os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 
 ###START To create and download embeddings, execute steps below on a GPU 
 #url = "https://www.globalgreyebooks.com/online-ebooks/paramhansa-yogananda_autobiography-of-a-yogi_complete-text.html"
