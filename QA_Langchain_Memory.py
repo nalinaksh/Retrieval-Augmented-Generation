@@ -15,7 +15,6 @@ from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 
 from CreateHFEmbedding import *
 import streamlit as st
-import openai
 import time
 import langchain
 import subprocess
