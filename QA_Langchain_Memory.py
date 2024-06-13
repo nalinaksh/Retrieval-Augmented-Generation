@@ -3,7 +3,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import HuggingFaceBgeEmbeddings
 from langchain.vectorstores import Chroma
 from langchain.chains import RetrievalQA
-from langchain.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate
 
 from langchain.memory import ConversationBufferWindowMemory
@@ -69,7 +69,7 @@ def get_vectorstore():
 
 @st.cache_resource
 def get_chat_openai():
-    llm = ChatOpenAI(openai_api_key=os.environ["OPENAI_API_KEY"],
+    llm = ChatOpenAI(api_key=os.environ["OPENAI_API_KEY"],
                      model_name="gpt-3.5-turbo", 
                      temperature=0,
                      max_tokens=200,
